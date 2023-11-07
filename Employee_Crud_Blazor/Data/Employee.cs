@@ -7,14 +7,13 @@ namespace Employee_Crud_Blazor.Data
         [Key]
         public int Id { get; set; }
         public string FirstName { get; set; }
-        public string MiddleName { get; set; }
         public string LastName { get; set; }
-        public string FullName => $"{FirstName} {MiddleName} {LastName}";
-        public string PostalCode { get; set; }
-        public string Address { get; set; }
+        public string FullName => $"{FirstName} {LastName}";
         public string EmailAddress { get; set; }
-        public string PhoneNumber { get; set; }
-        public string City { get; set; }
-        public string Designation { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
+        public string Password2 { get; set; }
+        public DateTime CreateDate { get; set; }
+        public DateTime DeleteDate { get; set; }
     }
 }

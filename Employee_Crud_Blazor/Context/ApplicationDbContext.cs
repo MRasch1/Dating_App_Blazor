@@ -12,6 +12,6 @@ namespace Employee_Crud_Blazor.Context
 
         }
 
-        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Employee> Users { get; set; }
     }
 }

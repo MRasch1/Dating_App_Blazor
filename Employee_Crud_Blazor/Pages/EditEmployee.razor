@@ -19,7 +19,7 @@
             </div>
             <div class="for-group">
                 <label for="MiddleName" class="control-label">Middle Name</label>
-                <input form="MiddleName" class="form-control" @bind="@obj.MiddleName" />
+                <input form="MiddleName" class="form-control" @bind="@obj.Login" />
             </div>
             <div class="for-group">
                 <label for="LastName" class="control-label">Last Name</label>
@@ -31,23 +31,19 @@
             </div>
             <div class="for-group">
                 <label for="PhoneNumber" class="control-label">Phone Number</label>
-                <input form="PhoneNumber" class="form-control" @bind="@obj.PhoneNumber" />
+                <input form="PhoneNumber" class="form-control" @bind="@obj.CreateDate" />
             </div>
             <div class="for-group">
                 <label for="PostalCode" class="control-label">Postal Code</label>
-                <input form="PostalCode" class="form-control" @bind="@obj.PostalCode" />
+                <input form="PostalCode" class="form-control" @bind="@obj.Password" />
             </div>
             <div class="for-group">
                 <label for="Address" class="control-label">Address</label>
-                <input form="Address" class="form-control" @bind="@obj.Address" />
+                <input form="Address" class="form-control" @bind="@obj.Password2" />
             </div>
             <div class="for-group">
                 <label for="City" class="control-label">City</label>
-                <input form="City" class="form-control" @bind="@obj.City" />
-            </div>
-            <div class="for-group">
-                <label for="Designation" class="control-label">Designation</label>
-                <input form="Designation" class="form-control" @bind="@obj.Designation" />
+                <input form="City" class="form-control" @bind="@obj.DeleteDate" />
             </div>
         </div>
     </div>
@@ -74,10 +70,10 @@
     protected async void UpdateEmployee()
     {
         await employeeService.UpdateEmployeeDetails(obj);
-        NavigationManager.NavigateTo("Employees");
+        NavigationManager.NavigateTo("Users");
     }
     protected async void Cancel()
     {
-        NavigationManager.NavigateTo("Employees");
+        NavigationManager.NavigateTo("Users");
     }
 }

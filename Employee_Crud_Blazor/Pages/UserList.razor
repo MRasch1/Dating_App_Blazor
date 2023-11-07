@@ -1,13 +1,13 @@
-﻿@page "/Employees"
+﻿@page "/Users"
 @using Employee_Crud_Blazor.Data
 @inject EmployeeService employeesService
 
 
-<NavLink class="nav-link" href="AddNewEmployee">
-    <span class="oi oi-plus" aria-hidden="true"> Add New Employee</span>
+<NavLink class="nav-link" href="AddNewUser">
+    <span class="oi oi-plus" aria-hidden="true"> Add New User</span>
 </NavLink>
 
-<h3>EmployeesList</h3>
+<h3>User List</h3>
 
 @if (EmpObj is null)
 {
@@ -19,19 +19,16 @@ else
         <thead>
             <tr>
                 <th>
-                    Emp No
+                    User Id
                 </th>
                 <th>
-                    Employee Name
+                    User FullName
                 </th>
                 <th>
                     Email Address
                 </th>
                 <th>
-                    Designation
-                </th>
-                <th>
-                    Phone Number
+                    Create Date
                 </th>
                 <th>
                     Edit
@@ -55,10 +52,7 @@ else
                         @emp.EmailAddress
                     </td>
                     <td>
-                        @emp.Designation
-                    </td>
-                    <td>
-                        @emp.PhoneNumber
+                        @emp.CreateDate
                     </td>
                     <td>
                         <a class="nav-link btn btn-primary" href="EditEmployee/@emp.Id">
@@ -66,7 +60,7 @@ else
                         </a>
                     </td>
                     <td>
-                        <a class="nav-link btn btn-danger" href="DeleteEmployee/@emp.Id">
+                        <a class="nav-link btn btn-danger" style="color: white" href="DeleteEmployee/@emp.Id">
                             <span class="oi oi-trash" aria-hidden="true"> Delete</span>
                         </a>
                     </td>

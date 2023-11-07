@@ -1,9 +1,9 @@
-﻿@page "/AddNewEmployee"
+﻿@page "/AddNewUser"
 @using Employee_Crud_Blazor.Data
 @inject EmployeeService employeeService
 @inject NavigationManager NavigationManager
 
-<h3>Add New Employee</h3>
+<h3>Add New User</h3>
 <hr />
 
 <form>
@@ -12,11 +12,7 @@
             <div class="for-group">
                 <label for="FirstName" class="control-label">First Name</label>
                 <input form="FirstName" class="form-control" @bind="@obj.FirstName" />
-            </div>
-            <div class="for-group">
-                <label for="MiddleName" class="control-label">Middle Name</label>
-                <input form="MiddleName" class="form-control" @bind="@obj.MiddleName" />
-            </div>
+            </div>            
             <div class="for-group">
                 <label for="LastName" class="control-label">Last Name</label>
                 <input form="LastName" class="form-control" @bind="@obj.LastName" />
@@ -26,24 +22,16 @@
                 <input form="EmailAddress" class="form-control" @bind="@obj.EmailAddress" />
             </div>
             <div class="for-group">
-                <label for="PhoneNumber" class="control-label">Phone Number</label>
-                <input form="PhoneNumber" class="form-control" @bind="@obj.PhoneNumber" />
+                <label for="Login" class="control-label">Login</label>
+                <input form="Login" class="form-control" @bind="@obj.Login" />
             </div>
             <div class="for-group">
-                <label for="PostalCode" class="control-label">Postal Code</label>
-                <input form="PostalCode" class="form-control" @bind="@obj.PostalCode" />
+                <label for="Password" class="control-label">Password</label>
+                <input form="Password" class="form-control" @bind="@obj.Password" />
             </div>
             <div class="for-group">
-                <label for="Address" class="control-label">Address</label>
-                <input form="Address" class="form-control" @bind="@obj.Address" />
-            </div>
-            <div class="for-group">
-                <label for="City" class="control-label">City</label>
-                <input form="City" class="form-control" @bind="@obj.City" />
-            </div>
-            <div class="for-group">
-                <label for="Designation" class="control-label">Designation</label>
-                <input form="Designation" class="form-control" @bind="@obj.Designation" />
+                <label for="Password2" class="control-label">Password2</label>
+                <input form="Password2" class="form-control" @bind="@obj.Password2" />
             </div>
         </div>
     </div>
@@ -62,11 +50,12 @@
 
     protected async void CreateNewEmployee()
     {
+        obj.CreateDate = DateTime.Now;
         await employeeService.AddNewEmployee(obj);
-        NavigationManager.NavigateTo("Employees");
+        NavigationManager.NavigateTo("Users");
     }
     protected async void Cancel()
     {
-        NavigationManager.NavigateTo("Employees");
+        NavigationManager.NavigateTo("Users");
     }
 }
