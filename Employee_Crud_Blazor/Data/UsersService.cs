@@ -32,6 +32,12 @@ namespace Employee_Crud_Blazor.Data
             return user;
         }
 
+        public async Task<Users> GetUserByUsernameAsync(string username)
+        {
+            Users user = await _applicationDbContext.Users.FirstOrDefaultAsync(u => u.Login == username);
+            return user;
+        }
+
         //Update Employee Data
         public async Task<bool> UpdateUserDetails(Users user)
         {

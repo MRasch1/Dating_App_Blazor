@@ -1,5 +1,6 @@
 using Employee_Crud_Blazor.Context;
 using Employee_Crud_Blazor.Data;
+using Employee_Crud_Blazor.Pages;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<UsersService>();
+builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 
 
 //Connection to the Database
