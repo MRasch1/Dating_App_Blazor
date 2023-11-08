@@ -14,11 +14,11 @@ namespace Employee_Crud_Blazor.Context
 
         public DbSet<Users> Users { get; set; }
 
-        public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<UserProfile> UserProfile { get; set; }
 
-        public DbSet<Gender> Genders { get; set; }
+        public DbSet<Gender> Gender { get; set; }
 
-        public DbSet<City> Cities { get; set; }
+        public DbSet<City> City { get; set; }
 
         public DbSet<Likes> Likes { get; set; }
 

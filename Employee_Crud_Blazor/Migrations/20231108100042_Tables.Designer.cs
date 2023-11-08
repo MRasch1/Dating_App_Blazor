@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Employee_Crud_Blazor.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231108094445_Tables")]
+    [Migration("20231108100042_Tables")]
     partial class Tables
     {
         /// <inheritdoc />
@@ -39,7 +39,7 @@ namespace Employee_Crud_Blazor.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cities");
+                    b.ToTable("City");
                 });
 
             modelBuilder.Entity("Employee_Crud_Blazor.Data.Gender", b =>
@@ -60,7 +60,7 @@ namespace Employee_Crud_Blazor.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genders");
+                    b.ToTable("Gender");
                 });
 
             modelBuilder.Entity("Employee_Crud_Blazor.Data.Likes", b =>
@@ -194,7 +194,7 @@ namespace Employee_Crud_Blazor.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserProfiles");
+                    b.ToTable("UserProfile");
                 });
 
             modelBuilder.Entity("Employee_Crud_Blazor.Data.Users", b =>
