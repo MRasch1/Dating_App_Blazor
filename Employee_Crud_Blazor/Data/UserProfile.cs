@@ -11,11 +11,8 @@ namespace Employee_Crud_Blazor.Data
         public DateTime BirthDate { get; set; }
         public int Height { get; set; }
         public string AboutMe { get; set; }
-        [AllowNull]
         public int CityId { get; set; }
-        [AllowNull]
         public int GenderId { get; set; }
-        [AllowNull]
         public int UsersId { get; set; }
     }
 }

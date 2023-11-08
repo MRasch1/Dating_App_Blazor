@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Employee_Crud_Blazor.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231108100042_Tables")]
+    [Migration("20231108160801_Tables")]
     partial class Tables
     {
         /// <inheritdoc />

@@ -1,6 +1,6 @@
 ﻿@page "/AddNewUser"
 @using Employee_Crud_Blazor.Data
-@inject UsersService employeeService
+@inject UsersService userService
 @inject NavigationManager NavigationManager
 
 <h3>Add New User</h3>
@@ -18,8 +18,8 @@
                 <input form="LastName" class="form-control" @bind="@obj.LastName" />
             </div>
             <div class="for-group">
-                <label for="Email" class="control-label">Email Address</label>
-                <input form="EmailAddress" class="form-control" @bind="@obj.Email" />
+                <label for="Email" class="control-label">Email</label>
+                <input form="Email" class="form-control" @bind="@obj.Email" />
             </div>
             <div class="for-group">
                 <label for="Login" class="control-label">Login</label>
@@ -38,7 +38,7 @@
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
-                <input type="button" class="btn btn-primary" @onclick="@CreateNewEmployee" value="Save Employee"/>
+                <input type="button" class="btn btn-primary" @onclick="@CreateNewUser" value="Save User"/>
                 <input type="button" class="btn btn-danger"  @onclick="@Cancel" value="Cancel"/>
             </div>
         </div>
@@ -48,10 +48,10 @@
 @code {
     Users obj = new Users();
 
-    protected async void CreateNewEmployee()
+    protected async void CreateNewUser()
     {
         obj.CreateDate = DateTime.Now;
-        await employeeService.AddNewEmployee(obj);
+        await userService.AddNewUser(obj);
         NavigationManager.NavigateTo("Users");
     }
     protected async void Cancel()

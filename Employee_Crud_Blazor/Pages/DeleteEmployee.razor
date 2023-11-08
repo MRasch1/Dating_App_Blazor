@@ -1,6 +1,6 @@
-﻿@page "/DeleteEmployee/{Id}"
+﻿@page "/DeleteUser/{Id}"
 @using Employee_Crud_Blazor.Data
-@inject UsersService employeeService
+@inject UsersService userService
 @inject NavigationManager NavigationManager
 
 <h3>Delete Employee</h3>
@@ -18,7 +18,7 @@
                 <label>@obj.FirstName</label>
             </div>
             <div class="for-group">
-                <label for="MiddleName" class="control-label">Middle Name</label>
+                <label for="Login" class="control-label">Login</label>
                 <label>@obj.Login</label>
             </div>
             <div class="for-group">
@@ -30,19 +30,19 @@
                 <label>@obj.Email</label>
             </div>
             <div class="for-group">
-                <label for="PhoneNumber" class="control-label">Phone Number</label>
+                <label for="CreateDate" class="control-label">Create Date</label>
                 <label>@obj.CreateDate</label>
             </div>
             <div class="for-group">
-                <label for="PostalCode" class="control-label">Postal Code</label>
+                <label for="Password" class="control-label">Password</label>
                 <label>@obj.Password</label>
             </div>
             <div class="for-group">
-                <label for="Address" class="control-label">Address</label>
+                <label for="Password2" class="control-label">Password2</label>
                 <label>@obj.Password2</label>
             </div>
             <div class="for-group">
-                <label for="City" class="control-label">City</label>
+                <label for="DeleteDate" class="control-label">Delete Date</label>
                 <label>@obj.DeleteDate</label>
             </div>
         </div>
@@ -50,7 +50,7 @@
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
-                <input type="button" class="btn btn-primary" @onclick="@DeleteEmployeeRecord" value="Delete Employee" />
+                <input type="button" class="btn btn-primary" @onclick="@DeleteUserRecord" value="Delete User" />
                 <input type="button" class="btn btn-danger" @onclick="@Cancel" value="Cancel" />
             </div>
         </div>
@@ -64,16 +64,16 @@
 
     protected override async Task OnInitializedAsync()
     {
-        obj = await Task.Run(() => employeeService.GetEmployeeById(Convert.ToInt32(Id)));
+        obj = await Task.Run(() => userService.GetUserById(Convert.ToInt32(Id)));
     }
 
-    protected async void DeleteEmployeeRecord()
+    protected async void DeleteUserRecord()
     {
-        await employeeService.DeleteEmployee(obj);
-        NavigationManager.NavigateTo("Employees");
+        await userService.DeleteUser(obj);
+        NavigationManager.NavigateTo("Users");
     }
     protected async void Cancel()
     {
-        NavigationManager.NavigateTo("Employees");
+        NavigationManager.NavigateTo("Users");
     }
 }

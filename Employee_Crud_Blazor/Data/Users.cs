@@ -15,7 +15,6 @@ namespace Employee_Crud_Blazor.Data
         public string Password { get; set; }
         public string Password2 { get; set; }
         public DateTime CreateDate { get; set; }
-        [AllowNull]
         public DateTime DeleteDate { get; set; }
     }
 }

@@ -8,7 +8,6 @@ namespace Employee_Crud_Blazor.Data
         [Key]
         public int Id { get; set; }
         public string GenderName { get; set; }
-        [AllowNull]
         public string Elaborate { get; set; }
     }
 }

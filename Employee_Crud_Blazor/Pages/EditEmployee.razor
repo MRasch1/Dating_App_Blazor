@@ -1,6 +1,6 @@
 ﻿@page "/EditEmployee/{Id}"
 @using Employee_Crud_Blazor.Data
-@inject UsersService employeeService
+@inject UsersService userService
 @inject NavigationManager NavigationManager
 
 <h3>Edit Employee</h3>
@@ -18,8 +18,8 @@
                 <input form="FirstName" class="form-control" @bind="@obj.FirstName" />
             </div>
             <div class="for-group">
-                <label for="MiddleName" class="control-label">Middle Name</label>
-                <input form="MiddleName" class="form-control" @bind="@obj.Login" />
+                <label for="Login" class="control-label">Login</label>
+                <input form="Login" class="form-control" @bind="@obj.Login" />
             </div>
             <div class="for-group">
                 <label for="LastName" class="control-label">Last Name</label>
@@ -27,30 +27,30 @@
             </div>
             <div class="for-group">
                 <label for="Email" class="control-label">Email Address</label>
-                <input form="EmailAddress" class="form-control" @bind="@obj.Email" />
+                <input form="Email" class="form-control" @bind="@obj.Email" />
             </div>
             <div class="for-group">
-                <label for="PhoneNumber" class="control-label">Phone Number</label>
-                <input form="PhoneNumber" class="form-control" @bind="@obj.CreateDate" />
+                <label for="CreateDate" class="control-label">Create Date</label>
+                <input form="CreateDate" class="form-control" @bind="@obj.CreateDate" />
             </div>
             <div class="for-group">
-                <label for="PostalCode" class="control-label">Postal Code</label>
-                <input form="PostalCode" class="form-control" @bind="@obj.Password" />
+                <label for="Password" class="control-label">Password</label>
+                <input form="Password" class="form-control" @bind="@obj.Password" />
             </div>
             <div class="for-group">
-                <label for="Address" class="control-label">Address</label>
-                <input form="Address" class="form-control" @bind="@obj.Password2" />
+                <label for="Password2" class="control-label">Password2</label>
+                <input form="Password2" class="form-control" @bind="@obj.Password2" />
             </div>
             <div class="for-group">
-                <label for="City" class="control-label">City</label>
-                <input form="City" class="form-control" @bind="@obj.DeleteDate" />
+                <label for="DeleteDate" class="control-label">Delete Date</label>
+                <input form="DeleteDate" class="form-control" @bind="@obj.DeleteDate" />
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
-                <input type="button" class="btn btn-primary" @onclick="@UpdateEmployee" value="Update Employee" />
+                <input type="button" class="btn btn-primary" @onclick="@UpdateUser" value="Update Employee" />
                 <input type="button" class="btn btn-danger" @onclick="@Cancel" value="Cancel" />
             </div>
         </div>
@@ -64,12 +64,12 @@
 
     protected override async Task OnInitializedAsync()
     {
-        obj = await Task.Run(() => employeeService.GetEmployeeById(Convert.ToInt32(Id)));
+        obj = await Task.Run(() => userService.GetUserById(Convert.ToInt32(Id)));
     }
 
-    protected async void UpdateEmployee()
+    protected async void UpdateUser()
     {
-        await employeeService.UpdateEmployeeDetails(obj);
+        await userService.UpdateUserDetails(obj);
         NavigationManager.NavigateTo("Users");
     }
     protected async void Cancel()

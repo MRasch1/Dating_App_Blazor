@@ -1,6 +1,6 @@
 ﻿@page "/Users"
 @using Employee_Crud_Blazor.Data
-@inject UsersService employeesService
+@inject UsersService usersService
 
 
 <NavLink class="nav-link" href="AddNewUser">
@@ -55,12 +55,12 @@ else
                         @emp.CreateDate
                     </td>
                     <td>
-                        <a class="nav-link btn btn-primary" href="EditEmployee/@emp.Id">
+                        <a class="nav-link btn btn-primary" href="EditUser/@emp.Id">
                             <span class="oi oi-pencil" aria-hidden="true"> Edit</span>
                         </a>
                     </td>
                     <td>
-                        <a class="nav-link btn btn-danger" style="color: white" href="DeleteEmployee/@emp.Id">
+                        <a class="nav-link btn btn-danger" style="color: white" href="DeleteUser/@emp.Id">
                             <span class="oi oi-trash" aria-hidden="true"> Delete</span>
                         </a>
                     </td>
@@ -76,7 +76,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        EmpObj = await Task.Run(() => employeesService.GetAllEmployees());
+        EmpObj = await Task.Run(() => usersService.GetAllUsers());
     }
 
 }
