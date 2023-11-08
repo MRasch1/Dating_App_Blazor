@@ -3,22 +3,22 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Employee_Crud_Blazor.Data
 {
-    public class EmployeeService
+    public class UsersService
     {
         private readonly ApplicationDbContext _applicationDbContext;
-        public EmployeeService(ApplicationDbContext applicationDbContext) 
+        public UsersService(ApplicationDbContext applicationDbContext) 
         {
             _applicationDbContext = applicationDbContext;
         }
 
         //Get All Employee List
-        public async Task<List<Employee>> GetAllEmployees()
+        public async Task<List<Users>> GetAllEmployees()
         {
             return await _applicationDbContext.Users.ToListAsync();
         }
 
         //Add New Employee Record
-        public async Task<bool> AddNewEmployee(Employee employee)
+        public async Task<bool> AddNewEmployee(Users employee)
         {
             await _applicationDbContext.Users.AddAsync(employee);
             await _applicationDbContext.SaveChangesAsync();
@@ -26,14 +26,14 @@ namespace Employee_Crud_Blazor.Data
         }
 
         //Get Employee Record by Id
-        public async Task<Employee> GetEmployeeById(int id)
+        public async Task<Users> GetEmployeeById(int id)
         {
-            Employee employee = await _applicationDbContext.Users.FirstOrDefaultAsync(x => x.Id == id);
+            Users employee = await _applicationDbContext.Users.FirstOrDefaultAsync(x => x.Id == id);
             return employee;
         }
 
         //Update Employee Data
-        public async Task<bool> UpdateEmployeeDetails(Employee employee)
+        public async Task<bool> UpdateEmployeeDetails(Users employee)
         {
             _applicationDbContext.Users.Update(employee);
             await _applicationDbContext.SaveChangesAsync();
@@ -41,7 +41,7 @@ namespace Employee_Crud_Blazor.Data
         }
 
         //Delete Employee Data
-        public async Task<bool> DeleteEmployee(Employee employee)
+        public async Task<bool> DeleteEmployee(Users employee)
         {
             _applicationDbContext.Users.Remove(employee);
             await _applicationDbContext.SaveChangesAsync();

@@ -1,6 +1,6 @@
 ﻿@page "/DeleteEmployee/{Id}"
 @using Employee_Crud_Blazor.Data
-@inject EmployeeService employeeService
+@inject UsersService employeeService
 @inject NavigationManager NavigationManager
 
 <h3>Delete Employee</h3>
@@ -27,7 +27,7 @@
             </div>
             <div class="for-group">
                 <label for="Email" class="control-label">Email Address</label>
-                <label>@obj.EmailAddress</label>
+                <label>@obj.Email</label>
             </div>
             <div class="for-group">
                 <label for="PhoneNumber" class="control-label">Phone Number</label>
@@ -60,7 +60,7 @@
 @code {
     [Parameter]
     public string Id { get; set; }
-    Employee obj = new Employee();
+    Users obj = new Users();
 
     protected override async Task OnInitializedAsync()
     {

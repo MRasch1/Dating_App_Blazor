@@ -1,6 +1,6 @@
 ﻿@page "/AddNewUser"
 @using Employee_Crud_Blazor.Data
-@inject EmployeeService employeeService
+@inject UsersService employeeService
 @inject NavigationManager NavigationManager
 
 <h3>Add New User</h3>
@@ -19,7 +19,7 @@
             </div>
             <div class="for-group">
                 <label for="Email" class="control-label">Email Address</label>
-                <input form="EmailAddress" class="form-control" @bind="@obj.EmailAddress" />
+                <input form="EmailAddress" class="form-control" @bind="@obj.Email" />
             </div>
             <div class="for-group">
                 <label for="Login" class="control-label">Login</label>
@@ -46,7 +46,7 @@
 </form>
 
 @code {
-    Employee obj = new Employee();
+    Users obj = new Users();
 
     protected async void CreateNewEmployee()
     {

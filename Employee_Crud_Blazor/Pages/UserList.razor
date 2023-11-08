@@ -1,6 +1,6 @@
 ﻿@page "/Users"
 @using Employee_Crud_Blazor.Data
-@inject EmployeeService employeesService
+@inject UsersService employeesService
 
 
 <NavLink class="nav-link" href="AddNewUser">
@@ -49,7 +49,7 @@ else
                         @emp.FullName
                     </td>
                     <td>
-                        @emp.EmailAddress
+                        @emp.Email
                     </td>
                     <td>
                         @emp.CreateDate
@@ -72,7 +72,7 @@ else
 
 
 @code {
-    List<Employee> EmpObj;
+    List<Users> EmpObj;
 
     protected override async Task OnInitializedAsync()
     {
