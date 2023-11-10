@@ -37,14 +37,6 @@
                 <label for="Password2" class="control-label">Password2</label>
                 <input form="Password2" class="form-control" @bind="@obj.Password2" />
             </div>
-            <div class="for-group">
-                <label for="CreateDate" class="control-label">Create Date</label>
-                <input form="CreateDate" class="form-control" @bind="@obj.CreateDate" />
-            </div>
-            <div class="for-group">
-                <label for="DeleteDate" class="control-label">Delete Date</label>
-                <input form="DeleteDate" class="form-control" @bind="@obj.DeleteDate" />
-            </div>
         </div>
     </div>
     <div class="row">
@@ -56,6 +48,9 @@
         </div>
     </div>
 </form>
+
+
+
 
 @code {
     [Parameter]
@@ -69,8 +64,15 @@
 
     protected async void UpdateUser()
     {
-        await userService.UpdateUserDetails(obj);
-        NavigationManager.NavigateTo("Users");
+        if (obj.Password == obj.Password2)
+        {
+            await userService.UpdateUserDetails(obj);
+            NavigationManager.NavigateTo("Users");
+        }
+        else
+        {
+            //Add message here
+        }
     }
     protected async void Cancel()
     {
