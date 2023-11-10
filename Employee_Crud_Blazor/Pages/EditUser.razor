@@ -1,4 +1,4 @@
-﻿@page "/EditEmployee/{Id}"
+﻿@page "/EditUser/{Id}"
 @using Employee_Crud_Blazor.Data
 @inject UsersService userService
 @inject NavigationManager NavigationManager
@@ -18,10 +18,6 @@
                 <input form="FirstName" class="form-control" @bind="@obj.FirstName" />
             </div>
             <div class="for-group">
-                <label for="Login" class="control-label">Login</label>
-                <input form="Login" class="form-control" @bind="@obj.Login" />
-            </div>
-            <div class="for-group">
                 <label for="LastName" class="control-label">Last Name</label>
                 <input form="LastName" class="form-control" @bind="@obj.LastName" />
             </div>
@@ -30,8 +26,8 @@
                 <input form="Email" class="form-control" @bind="@obj.Email" />
             </div>
             <div class="for-group">
-                <label for="CreateDate" class="control-label">Create Date</label>
-                <input form="CreateDate" class="form-control" @bind="@obj.CreateDate" />
+                <label for="Login" class="control-label">Login</label>
+                <input form="Login" class="form-control" @bind="@obj.Login" />
             </div>
             <div class="for-group">
                 <label for="Password" class="control-label">Password</label>
@@ -40,6 +36,10 @@
             <div class="for-group">
                 <label for="Password2" class="control-label">Password2</label>
                 <input form="Password2" class="form-control" @bind="@obj.Password2" />
+            </div>
+            <div class="for-group">
+                <label for="CreateDate" class="control-label">Create Date</label>
+                <input form="CreateDate" class="form-control" @bind="@obj.CreateDate" />
             </div>
             <div class="for-group">
                 <label for="DeleteDate" class="control-label">Delete Date</label>
