@@ -69,7 +69,8 @@
 
     protected async void DeleteUserRecord()
     {
-        await userService.DeleteUser(obj);
+        obj.DeleteDate = DateTime.Today;
+        await userService.UpdateUserDetails(obj);
         NavigationManager.NavigateTo("Users");
     }
     protected async void Cancel()

@@ -9,7 +9,7 @@
 
 <h3>User List</h3>
 
-@if (EmpObj is null)
+@if (userObj is null)
 {
     <p><em>Loading...</em></p>
 }
@@ -39,32 +39,36 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach(var emp in EmpObj)
+            @foreach(var user in userObj)
             {
-                <tr>
+                @if (user.DeleteDate == null)
+                {
+                    <tr>
+
                     <td>
-                        @emp.Id
+                        @user.Id
                     </td>
                     <td>
-                        @emp.FullName
+                        @user.FullName
                     </td>
                     <td>
-                        @emp.Email
+                        @user.Email
                     </td>
                     <td>
-                        @emp.CreateDate
+                        @user.CreateDate
                     </td>
                     <td>
-                        <a class="nav-link btn btn-primary" href="EditUser/@emp.Id">
+                        <a class="nav-link btn btn-primary" href="EditUser/@user.Id">
                             <span class="oi oi-pencil" aria-hidden="true"> Edit</span>
                         </a>
                     </td>
                     <td>
-                        <a class="nav-link btn btn-danger" style="color: white" href="DeleteUser/@emp.Id">
+                        <a class="nav-link btn btn-danger" style="color: white" href="DeleteUser/@user.Id">
                             <span class="oi oi-trash" aria-hidden="true"> Delete</span>
                         </a>
                     </td>
                 </tr>
+                }
             }
         </tbody>
     </table>
@@ -72,11 +76,11 @@ else
 
 
 @code {
-    List<Users> EmpObj;
+    List<Users> userObj;
 
     protected override async Task OnInitializedAsync()
     {
-        EmpObj = await Task.Run(() => usersService.GetAllUsers());
+        userObj = await Task.Run(() => usersService.GetAllUsers());
     }
 
 }
