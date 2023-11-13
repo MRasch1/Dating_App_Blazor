@@ -1,8 +1,7 @@
 ﻿@page "/Userlogin"
 @using Employee_Crud_Blazor.Data
-@inject UsersService userService
+@inject UsersService usersService
 @inject NavigationManager NavigationManager
-@inject IAuthenticationService authenticationService
 
 <h3>Login</h3>
 
@@ -23,13 +22,21 @@
     private string password;
     private string errorMessage;
 
+    [Parameter]
+    public string login { get; set; }
+    Users obj = new Users();
+
+    protected override async Task OnInitializedAsync()
+    {
+        obj = await Task.Run(() => usersService.GetUserByUsernameAsync((login)));
+    }    
 
     private async Task Login()
     {
         // Validate user credentials
-        bool isValid = await authenticationService.AuthenticateAsync(username, password);
+        //bool isValid = false;
 
-        if (isValid)
+        if (password == obj.Password && username == obj.Login)
         {
             // Redirect to a protected page after successful login
             NavigationManager.NavigateTo("/Users");
