@@ -53,10 +53,10 @@
         obj.CreateDate = DateTime.Now;
         obj.DeleteDate = null;
         await userService.AddNewUser(obj);
-        NavigationManager.NavigateTo("Users");
+        NavigationManager.NavigateTo("Userlogin");
     }
     protected async void Cancel()
     {
-        NavigationManager.NavigateTo("Users");
+        NavigationManager.NavigateTo("Userlogin");
     }
 }

@@ -1,0 +1,21 @@
+﻿@page "/UserHomePage/{login}"
+@using Employee_Crud_Blazor.Data
+@inject UsersService userService
+@inject NavigationManager NavigationManager
+
+<h3>UserHomePage</h3>
+
+<p>Hej @login</p>
+
+@code {
+    [Parameter]
+    public string login { get; set; }
+    Users obj = new Users();
+
+    protected override async Task OnInitializedAsync()
+    {
+        obj = await Task.Run(() => userService.GetUserByUsernameAsync((login)));
+    }
+
+
+}
