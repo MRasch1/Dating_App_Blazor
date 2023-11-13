@@ -14,29 +14,27 @@
         <label for="password">Password:</label>
         <input id="password" type="password" class="form-control" @bind="password" />
     </div>
-    <button type="submit" class="btn btn-primary" @onclick="Login">Login</button>
+    <button type="button" class="btn btn-primary" @onclick="Login">Login</button>
 </form>
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <p class="text-danger">@errorMessage</p>
+}
 
 @code {
     private string username;
     private string password;
     private string errorMessage;
-
-    [Parameter]
-    public string login { get; set; }
-    Users obj = new Users();
-
-    protected override async Task OnInitializedAsync()
-    {
-        obj = await Task.Run(() => usersService.GetUserByUsernameAsync((login)));
-    }    
+    private Users obj;
 
     private async Task Login()
     {
         // Validate user credentials
-        //bool isValid = false;
+        obj = await usersService.GetUserByUsernameAsync(username);
 
-        if (password == obj.Password && username == obj.Login)
+        // Check if user is valid
+        if (obj != null && password == obj.Password && username == obj.Login)
         {
             // Redirect to a protected page after successful login
             NavigationManager.NavigateTo("/Users");
@@ -46,5 +44,5 @@
             // Display an error message
             errorMessage = "Invalid username or password.";
         }
-    }    
+    }
 }
