@@ -11,13 +11,13 @@ namespace Employee_Crud_Blazor.Data
             _applicationDbContext = applicationDbContext;
         }
 
-        //Get All Employee List
+        //Get All User List
         public async Task<List<Users>> GetAllUsers()
         {
             return await _applicationDbContext.Users.ToListAsync();
         }
 
-        //Add New Employee Record
+        //Add New User Record
         public async Task<bool> AddNewUser(Users user)
         {
             await _applicationDbContext.Users.AddAsync(user);
@@ -25,7 +25,7 @@ namespace Employee_Crud_Blazor.Data
             return true;
         }
 
-        //Get Employee Record by Id
+        //Get User Record by Id
         public async Task<Users> GetUserById(int id)
         {
             Users user = await _applicationDbContext.Users.FirstOrDefaultAsync(x => x.Id == id);
@@ -38,7 +38,7 @@ namespace Employee_Crud_Blazor.Data
             return user;
         }
 
-        //Update Employee Data
+        //Update User Data
         public async Task<bool> UpdateUserDetails(Users user)
         {
             _applicationDbContext.Users.Update(user);
@@ -46,7 +46,7 @@ namespace Employee_Crud_Blazor.Data
             return true;
         }
 
-        //Delete Employee Data
+        //Delete User Data
         public async Task<bool> DeleteUser(Users user)
         {
             _applicationDbContext.Users.Remove(user);
