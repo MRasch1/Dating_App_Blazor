@@ -1,21 +1,40 @@
 ﻿@page "/UserHomePage/{login}"
 @using Employee_Crud_Blazor.Data
 @inject UsersService userService
+@inject UserProfileService userProfileService
 @inject NavigationManager NavigationManager
 
 <h3>UserHomePage</h3>
 
 <p>Hej @login</p>
 
+<p>Dette er dit ID: @obj.Id</p>
+
+
+<tbody>
+    <tr>
+        <td>
+            <a class="nav-link btn btn-primary" href="AddNewUserProfile/@obj.Id">
+                <span class="oi oi-pencil" aria-hidden="true"> Add New UserProfile</span>
+            </a>
+        </td>
+    </tr>
+</tbody>
+
+
+
 @code {
     [Parameter]
     public string login { get; set; }
     Users obj = new Users();
+    List<UserProfileService> userProfileObj;
+
 
     protected override async Task OnInitializedAsync()
     {
         obj = await Task.Run(() => userService.GetUserByUsernameAsync((login)));
-    }
 
+        //userProfileObj = await Task.Run(() => userProfileService.GetAllUserProfiles());
+    }
 
 }

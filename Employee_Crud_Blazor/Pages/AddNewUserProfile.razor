@@ -1,0 +1,72 @@
+﻿@page "/AddNewUserProfile/{Id}"
+@using Employee_Crud_Blazor.Data
+@inject UsersService userService
+@inject UserProfileService userProfileService
+@inject NavigationManager NavigationManager
+
+
+<h3>Add New UserProfile</h3>
+<hr />
+
+<form>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="for-group">
+                <label for="UserName" class="control-label">User name</label>
+                <input form="UserName" class="form-control" @bind="@objUserProfile.UserName" />
+            </div>
+            <div class="for-group">
+                <label for="BirthDate" class="control-label">BirthDate</label>
+                <input form="BirthDate" class="form-control" @bind="@objUserProfile.BirthDate" />
+            </div>
+            <div class="for-group">
+                <label for="Height" class="control-label">Height</label>
+                <input form="Height" class="form-control" @bind="@objUserProfile.Height" />
+            </div>
+            <div class="for-group">
+                <label for="AboutMe" class="control-label">AboutMe</label>
+                <input form="AboutMe" class="form-control" @bind="@objUserProfile.AboutMe" />
+            </div>
+            <div class="for-group">
+                <label for="CityId" class="control-label">CityId</label>
+                <input form="CityId" class="form-control" @bind="@objUserProfile.CityId" />
+            </div>
+            <div class="for-group">
+                <label for="GenderId" class="control-label">GenderId</label>
+                <input form="GenderId" class="form-control" @bind="@objUserProfile.GenderId" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="button" class="btn btn-primary" @onclick="@CreateNewUserProfile" value="Save User" />
+                <input type="button" class="btn btn-danger" @onclick="@Cancel" value="Cancel" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+    Users objUser = new Users();
+    UserProfile objUserProfile = new UserProfile();
+
+    protected override async Task OnInitializedAsync()
+    {
+        objUser = await Task.Run(() => userService.GetUserById(Convert.ToInt32(Id)));
+    }    
+
+    protected async void CreateNewUserProfile()
+    {
+        objUserProfile.UsersId = objUser.Id;
+        await userProfileService.AddNewUserProfile(objUserProfile);
+        NavigationManager.NavigateTo("Userlogin");
+    }
+    protected async void Cancel()
+    {
+        NavigationManager.NavigateTo("Userlogin");
+    }
+
+}
