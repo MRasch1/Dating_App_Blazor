@@ -43,7 +43,7 @@
             // Redirect to a protected page after successful login
             NavigationManager.NavigateTo($"/UserHomePage/{obj.Login}");
         }
-        else if (password == "admin" && username == "admin")
+        else if (password.ToLower() == "admin" && username.ToLower() == "admin")
         {
             NavigationManager.NavigateTo("/Users");
         }
