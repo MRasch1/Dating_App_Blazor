@@ -62,11 +62,11 @@
     {
         objUserProfile.UsersId = objUser.Id;
         await userProfileService.AddNewUserProfile(objUserProfile);
-        NavigationManager.NavigateTo("Userlogin");
+        NavigationManager.NavigateTo($"/UserHomePage/{objUser.Login}");
     }
     protected async void Cancel()
     {
-        NavigationManager.NavigateTo("Userlogin");
+        NavigationManager.NavigateTo($"/UserHomePage/{objUser.Login}");
     }
 
 }
