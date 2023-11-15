@@ -32,6 +32,13 @@ namespace Employee_Crud_Blazor.Data
             return userProfile;
         }
 
+        //Get UserProfile Record by UserId
+        public async Task<UserProfile> GetUserProfileByUserId(int userId)
+        {
+            UserProfile userProfile = await _applicationDbContext.UserProfile.FirstOrDefaultAsync(x => x.UsersId == userId);
+            return userProfile;
+        }
+
         public async Task<UserProfile> GetUserProfileByUsernameAsync(string username)
         {
             UserProfile userProfile = await _applicationDbContext.UserProfile.FirstOrDefaultAsync(u => u.UserName == username);

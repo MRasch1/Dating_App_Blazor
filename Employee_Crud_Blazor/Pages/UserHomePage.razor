@@ -8,33 +8,40 @@
 
 <p>Hej @login</p>
 
-<p>Dette er dit ID: @obj.Id</p>
+<p>Dette er dit ID: @userObj.Id</p>
 
+@if (userProfileObj != null)
+{
+    <p><em>This user already has a profile...</em></p>
+}
+else
+{
+    <tbody>
+        <tr>
+            <td>
+                <a class="nav-link btn btn-primary" href="AddNewUserProfile/@userObj.Id">
+                    <span class="oi oi-pencil" aria-hidden="true"> Add New UserProfile</span>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+}
 
-<tbody>
-    <tr>
-        <td>
-            <a class="nav-link btn btn-primary" href="AddNewUserProfile/@obj.Id">
-                <span class="oi oi-pencil" aria-hidden="true"> Add New UserProfile</span>
-            </a>
-        </td>
-    </tr>
-</tbody>
 
 
 
 @code {
     [Parameter]
     public string login { get; set; }
-    Users obj = new Users();
-    List<UserProfileService> userProfileObj;
+    Users userObj = new Users();
+    UserProfile userProfileObj = new UserProfile();
 
 
     protected override async Task OnInitializedAsync()
     {
-        obj = await Task.Run(() => userService.GetUserByUsernameAsync((login)));
+        userObj = await Task.Run(() => userService.GetUserByUsernameAsync((login)));
 
-        //userProfileObj = await Task.Run(() => userProfileService.GetAllUserProfiles());
+        userProfileObj = await Task.Run(() => userProfileService.GetUserProfileByUserId((userObj.Id)));
     }
 
 }
