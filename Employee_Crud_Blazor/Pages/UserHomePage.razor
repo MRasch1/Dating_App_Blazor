@@ -12,7 +12,15 @@
 
 @if (userProfileObj != null)
 {
-    <p><em>This user already has a profile...</em></p>
+    <tbody>
+        <tr>
+            <td>
+                <a class="nav-link btn btn-primary" href="/EditUserProfile/@userProfileObj.UsersId">
+                    <span class="oi oi-pencil" aria-hidden="true"> Edit Profile</span>
+                </a>
+            </td>
+        </tr>
+    </tbody>
 }
 else
 {

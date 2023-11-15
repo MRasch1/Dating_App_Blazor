@@ -59,7 +59,7 @@
     }    
 
     protected async void CreateNewUserProfile()
-    {
+    {        
         objUserProfile.UsersId = objUser.Id;
         await userProfileService.AddNewUserProfile(objUserProfile);
         NavigationManager.NavigateTo($"/UserHomePage/{objUser.Login}");
