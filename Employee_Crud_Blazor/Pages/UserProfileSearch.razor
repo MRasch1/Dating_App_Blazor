@@ -1,4 +1,4 @@
-﻿@page "/UserProfileSearch"
+﻿@page "/UserProfileSearch/{Id}"
 @using Employee_Crud_Blazor.Data
 @inject UsersService userService
 @inject UserProfileService userProfileService
@@ -34,11 +34,15 @@ else
     <p>Click the "Search" button to display results.</p>
 }
 
+<button type="button" class="btn btn-primary" @onclick="Back">Go back</button>
 
 
 @code {
+    [Parameter]
+    public string Id { get; set; }
     private int minAge;
     private int maxAge;
+    Users objUser = new Users();
     private List<UserProfile> userProfileObj;
     private List<UserProfile> originalUserProfileObj;
     private bool searchPerformed = false;
@@ -54,8 +58,15 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        objUser = await Task.Run(() => userService.GetUserById(Convert.ToInt32(Id)));
+
         userProfileObj = await Task.Run(() => userProfileService.GetAllUserProfiles());
         originalUserProfileObj = userProfileObj;
+    }
+
+    private async void Back()
+    {
+        NavigationManager.NavigateTo($"/UserHomePage/{objUser.Login}");
     }
 
     private int ConvertDateToAge(DateTime birthdate)
