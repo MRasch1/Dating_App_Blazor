@@ -24,7 +24,10 @@
         <ul>
             @foreach (var userProf in userProfileObj)
             {
-                <li>@userProf.UserName - Age: @ConvertDateToAge(userProf.BirthDate)</li>
+                if (userProf.UsersId != objUser.Id)
+                {
+                    <li>@userProf.UserName - Age: @ConvertDateToAge(userProf.BirthDate)</li>
+                }
             }
         </ul>
     }
@@ -74,7 +77,7 @@ else
         DateTime today = DateTime.Now;
         int age = today.Year - birthdate.Year;
 
-        if(birthdate.Date > today.AddYears(-age))
+        if (birthdate.Date > today.AddYears(-age))
         {
             age--;
         }
