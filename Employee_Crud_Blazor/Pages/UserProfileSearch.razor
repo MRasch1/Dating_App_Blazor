@@ -1,0 +1,73 @@
+﻿@page "/UserProfileSearch"
+@using Employee_Crud_Blazor.Data
+@inject UsersService userService
+@inject UserProfileService userProfileService
+@inject NavigationManager NavigationManager
+
+
+<h3>Search by Age</h3>
+
+<label>Min Age:</label>
+<input @bind="minAge" type="number" />
+
+<label>Max Age:</label>
+<input @bind="maxAge" type="number" />
+
+<button @onclick="Search">Search</button>
+
+
+@if (searchPerformed)
+{
+    @if (userProfileObj != null)
+    {
+        <h4>Search Results:</h4>
+        <ul>
+            @foreach (var userProf in userProfileObj)
+            {
+                <li>@userProf.UserName - Age: @ConvertDateToAge(userProf.BirthDate)</li>
+            }
+        </ul>
+    }
+}
+else
+{
+    <p>Click the "Search" button to display results.</p>
+}
+
+
+
+@code {
+    private int minAge;
+    private int maxAge;
+    private List<UserProfile> userProfileObj;
+    private List<UserProfile> originalUserProfileObj;
+    private bool searchPerformed = false;
+
+    private void Search()
+    {
+        userProfileObj = originalUserProfileObj
+        .Where(p => ConvertDateToAge(p.BirthDate) >= minAge && ConvertDateToAge(p.BirthDate) <= maxAge)
+        .ToList();
+
+        searchPerformed = true;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        userProfileObj = await Task.Run(() => userProfileService.GetAllUserProfiles());
+        originalUserProfileObj = userProfileObj;
+    }
+
+    private int ConvertDateToAge(DateTime birthdate)
+    {
+        DateTime today = DateTime.Now;
+        int age = today.Year - birthdate.Year;
+
+        if(birthdate.Date > today.AddYears(-age))
+        {
+            age--;
+        }
+
+        return age;
+    }
+}
