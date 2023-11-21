@@ -24,5 +24,11 @@ namespace Employee_Crud_Blazor.Data
             Likes likes = await _applicationDbContext.Likes.FirstOrDefaultAsync(x => x.Liker == liker);
             return likes;
         }
+
+        //Get all Likes records
+        public async Task<List<Likes>> GetAllLikes()
+        {
+            return await _applicationDbContext.Likes.ToListAsync();
+        }
     }
 }
