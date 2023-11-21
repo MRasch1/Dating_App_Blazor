@@ -2,6 +2,7 @@
 @using Employee_Crud_Blazor.Data
 @inject UsersService userService
 @inject UserProfileService userProfileService
+@inject LikesService likesService
 @inject NavigationManager NavigationManager
 
 
@@ -26,7 +27,12 @@
             {
                 if (userProf.UsersId != objUser.Id)
                 {
-                    <li>@userProf.UserName - Age: @ConvertDateToAge(userProf.BirthDate)</li>
+                    <li>@userProf.UserName -
+                        Age: @ConvertDateToAge(userProf.BirthDate) -
+                        Gender: @userProf.GenderId
+                        
+                        <button @onclick="() => Like(userProf.UsersId)">Like</button>
+                    </li>
                 }
             }
         </ul>
@@ -46,6 +52,7 @@ else
     private int minAge;
     private int maxAge;
     Users objUser = new Users();
+    Likes objLikes = new Likes();
     private List<UserProfile> userProfileObj;
     private List<UserProfile> originalUserProfileObj;
     private bool searchPerformed = false;
@@ -70,6 +77,15 @@ else
     private async void Back()
     {
         NavigationManager.NavigateTo($"/UserHomePage/{objUser.Login}");
+    }
+
+    private async void Like(int likeeId)
+    {
+        objLikes.Likee = likeeId;
+        objLikes.Liker = objUser.Id;
+        objLikes.Status = 1;
+        await likesService.AddNewLikes(objLikes);
+        NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);
     }
 
     private int ConvertDateToAge(DateTime birthdate)
