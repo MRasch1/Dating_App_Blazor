@@ -10,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+//De tre linjer nedenunder bliver lavet i forhold dependency injection. Scoped betyder at der bliver lavet en instans af servicen.
+//Et scope er normalt den tid en bruger er på en side (page), når en bruger navigere til en ny side bliver der lavet en ny instans af servicen.
 builder.Services.AddScoped<UsersService>();
 builder.Services.AddScoped<UserProfileService>();
 builder.Services.AddScoped<LikesService>();
