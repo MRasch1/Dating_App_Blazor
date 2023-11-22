@@ -12,6 +12,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<UsersService>();
 builder.Services.AddScoped<UserProfileService>();
+builder.Services.AddScoped<LikesService>();
 
 
 //Connection to the Database

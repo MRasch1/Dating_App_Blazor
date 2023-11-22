@@ -2,6 +2,7 @@
 @using Employee_Crud_Blazor.Data
 @inject UsersService userService
 @inject UserProfileService userProfileService
+@inject LikesService likesService
 @inject NavigationManager NavigationManager
 
 
@@ -26,7 +27,12 @@
             {
                 if (userProf.UsersId != objUser.Id)
                 {
-                    <li>@userProf.UserName - Age: @ConvertDateToAge(userProf.BirthDate)</li>
+                    <li>
+                        @userProf.UserName -
+                        Age: @ConvertDateToAge(userProf.BirthDate) -
+                        Gender: @userProf.GenderId
+                        <button @onclick="() => Like(userProf.Id)">Like</button>                        
+                    </li>
                 }
             }
         </ul>
@@ -46,8 +52,10 @@ else
     private int minAge;
     private int maxAge;
     Users objUser = new Users();
+    Likes objLikes = new Likes();
     private List<UserProfile> userProfileObj;
     private List<UserProfile> originalUserProfileObj;
+    private List<Likes> likesListObj;
     private bool searchPerformed = false;
 
     private void Search()
@@ -62,6 +70,8 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        likesListObj = await Task.Run(() => likesService.GetAllLikes());
+
         objUser = await Task.Run(() => userService.GetUserById(Convert.ToInt32(Id)));
 
         userProfileObj = await Task.Run(() => userProfileService.GetAllUserProfiles());
@@ -71,6 +81,27 @@ else
     private async void Back()
     {
         NavigationManager.NavigateTo($"/UserHomePage/{objUser.Login}");
+    }
+
+    private async void Like(int likeeId)
+    {
+        objLikes.Likee = likeeId;
+        objLikes.Liker = objUser.Id;
+        objLikes.Status = 1;
+        await likesService.AddNewLikes(objLikes);
+        NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);
+    }
+
+    private async Task<bool> CheckLikesExistence(int likerId, int likeeId)
+    {
+        foreach (var Likeitem in likesListObj)
+        {
+            if (Likeitem.Liker == likerId && Likeitem.Likee == likeeId)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private int ConvertDateToAge(DateTime birthdate)
