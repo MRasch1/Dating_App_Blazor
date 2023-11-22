@@ -62,6 +62,7 @@
 
     protected override async Task OnInitializedAsync()
     {
+        //Jeg bruger "UsersId" for at få fat den rigtige tabel som jeg gerne vil slette i "UserProfile".
         objUserProfile = await Task.Run(() => userProfileService.GetUserProfileByUserId(Convert.ToInt32(UsersId)));
 
         objUser = await Task.Run(() => userService.GetUserById(Convert.ToInt32(UsersId)));

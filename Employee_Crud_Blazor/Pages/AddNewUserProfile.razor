@@ -48,6 +48,8 @@
 </form>
 
 @code {
+    //De to linjer nedenunder sørger for at få fat på User og hive hans data frem i linje 57-60.
+    //[Parameter] er en del af blazor's syntaks og det laver en forbindelse mellem parent og child components.
     [Parameter]
     public string Id { get; set; }
     Users objUser = new Users();
@@ -59,9 +61,11 @@
     }    
 
     protected async void CreateNewUserProfile()
-    {        
+    {
+        //linjen nedenunder gør så den rigtige User får den rigtige UserProfile.
         objUserProfile.UsersId = objUser.Id;
         await userProfileService.AddNewUserProfile(objUserProfile);
+        //Når User er færdig med at lave deres profil, bliver de sendt tilbage til Homepage ved brug af deres "User Login".
         NavigationManager.NavigateTo($"/UserHomePage/{objUser.Login}");
     }
     protected async void Cancel()

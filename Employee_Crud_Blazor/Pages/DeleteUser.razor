@@ -57,6 +57,8 @@
     </div>
 </form>
 
+
+
 @code {
     [Parameter]
     public string Id { get; set; }
@@ -69,6 +71,7 @@
 
     protected async void DeleteUserRecord()
     {
+        //Det er egentligt en "Update User Record", for det eneste den gør er at den laver en dato til "DeleteDate".
         obj.DeleteDate = DateTime.Today;
         await userService.UpdateUserDetails(obj);
         NavigationManager.NavigateTo("Users");

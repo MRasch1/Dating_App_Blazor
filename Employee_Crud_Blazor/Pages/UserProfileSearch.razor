@@ -52,6 +52,7 @@ else
 
     private void Search()
     {
+        //"originalUserProfileObj" bliver brugt til at hente hele listen igen efter at have søgt en gang. Ellers ville resultater forsvinde når man ændre på "minAge" og "maxAge".
         userProfileObj = originalUserProfileObj
         .Where(p => ConvertDateToAge(p.BirthDate) >= minAge && ConvertDateToAge(p.BirthDate) <= maxAge)
         .ToList();

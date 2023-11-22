@@ -28,6 +28,7 @@ namespace Employee_Crud_Blazor.Data
         //Get User Record by Id
         public async Task<Users> GetUserById(int id)
         {
+            //Der bliver brugt et lambda udtryk til at lede efter en User i Users med et Id som er det samme som man søger efter.
             Users user = await _applicationDbContext.Users.FirstOrDefaultAsync(x => x.Id == id);
             return user;
         }

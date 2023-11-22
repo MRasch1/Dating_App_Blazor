@@ -49,6 +49,11 @@
     </div>
 </form>
 
+@* En fejlmeddelelse bliver vist hvis kodeordene ikke stemmer overens. *@
+@if (obj.Password != obj.Password2)
+{
+    <p class="text-danger">@errorMessage</p>
+}
 
 
 
@@ -56,6 +61,7 @@
     [Parameter]
     public string Id { get; set; }
     Users obj = new Users();
+    private string errorMessage;
 
     protected override async Task OnInitializedAsync()
     {
@@ -70,8 +76,8 @@
             NavigationManager.NavigateTo("Users");
         }
         else
-        {
-            //Add message here
+        {            
+            errorMessage = "Password is not the same as Password2";
         }
     }
     protected async void Cancel()
